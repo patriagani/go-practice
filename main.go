@@ -56,8 +56,8 @@ func main() {
 	productService := services.NewProductService(productRepo)
 	productHandler := handlers.NewProductHandler(productService)
 
-	http.HandleFunc("/api/products", productHandler.HandleProducts)
-	http.HandleFunc("/api/products/", productHandler.HandleProductByID)
+	http.HandleFunc("/api/produk", productHandler.HandleProducts)
+	http.HandleFunc("/api/produk/", productHandler.HandleProductByID)
 
 	categoryRepo := repositories.NewCategoryRepository(db)
 	categoryService := services.NewCategoryService(categoryRepo)
