@@ -75,6 +75,14 @@ func main() {
 
 	http.HandleFunc("/api/checkout", transactionHandler.HandleCheckout) // POST
 
+	// Report
+	reportRepo := repositories.NewReportRepository(db)
+	reportService := services.NewReportService(reportRepo)
+	reportHandler := handlers.NewReportHandler(reportService)
+
+	http.HandleFunc("/api/report/hari-ini", reportHandler.HandleDailyReport)
+	http.HandleFunc("/api/report", reportHandler.HandleReportByDateRange)
+
 	//GET /health
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
